@@ -1,0 +1,27 @@
+name: PicoGPT Workflow
+
+on:
+  push:
+    branches:
+      - hamza_branch
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Python environment
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run basic example
+        run: python gpt2.py "Alan Turing theorized that computers would one day become"
+        
